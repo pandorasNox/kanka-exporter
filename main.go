@@ -78,7 +78,7 @@ func main() {
 			log.Fatalf("couldn't fetch and read body: %s", err)
 		}
 
-		exportFile := exportDirForResource + "/page-1"
+		exportFile := exportDirForResource + "/page-1.json"
 
 		err = ioutil.WriteFile(exportFile, body, 0644)
 		if err != nil {
@@ -105,7 +105,7 @@ func main() {
 				log.Fatalf("couldn't fetch and read body: %s", err)
 			}
 
-			exportFile := exportDirForResource + "/page-" + strconv.Itoa(i)
+			exportFile := exportDirForResource + "/page-" + strconv.Itoa(i) + ".json"
 
 			err = ioutil.WriteFile(exportFile, body, 0644)
 			if err != nil {
