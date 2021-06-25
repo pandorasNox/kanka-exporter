@@ -58,11 +58,24 @@ var kResources = []kankaResource{
 	// 		return resource, nil
 	// 	},
 	// },
+	// {
+	// 	"families", "/families",
+	// 	func(body string) (MetaInfo, error) {
+	// 		empty := Families{}
+	// 		resource := Families{}
+	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
+	// 		if err != nil {
+	// 			return empty, fmt.Errorf("couldn't json decode body: %s", err)
+	// 		}
+
+	// 		return resource, nil
+	// 	},
+	// },
 	{
-		"families", "/families",
+		"organisations", "/organisations",
 		func(body string) (MetaInfo, error) {
-			empty := Families{}
-			resource := Families{}
+			empty := Organisations{}
+			resource := Organisations{}
 			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 			if err != nil {
 				return empty, fmt.Errorf("couldn't json decode body: %s", err)
@@ -72,10 +85,10 @@ var kResources = []kankaResource{
 		},
 	},
 	{
-		"organisations", "/organisations",
+		"items", "/items",
 		func(body string) (MetaInfo, error) {
-			empty := Organisations{}
-			resource := Organisations{}
+			empty := Items{}
+			resource := Items{}
 			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 			if err != nil {
 				return empty, fmt.Errorf("couldn't json decode body: %s", err)
