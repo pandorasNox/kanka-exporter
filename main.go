@@ -89,25 +89,39 @@ var kResources = []kankaResource{
 	// 	},
 	// },
 
-	{
-		"items", "/items",
-		func(body string) (MetaInfo, error) {
-			empty := Items{}
-			resource := Items{}
-			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
-			if err != nil {
-				return empty, fmt.Errorf("couldn't json decode body: %s", err)
-			}
+	// {
+	// 	"items", "/items",
+	// 	func(body string) (MetaInfo, error) {
+	// 		empty := Items{}
+	// 		resource := Items{}
+	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
+	// 		if err != nil {
+	// 			return empty, fmt.Errorf("couldn't json decode body: %s", err)
+	// 		}
 
-			return resource, nil
-		},
-	},
+	// 		return resource, nil
+	// 	},
+	// },
+
+	// {
+	// 	"notes", "/notes",
+	// 	func(body string) (MetaInfo, error) {
+	// 		empty := Notes{}
+	// 		resource := Notes{}
+	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
+	// 		if err != nil {
+	// 			return empty, fmt.Errorf("couldn't json decode body: %s", err)
+	// 		}
+
+	// 		return resource, nil
+	// 	},
+	// },
 
 	{
-		"notes", "/notes",
+		"races", "/races",
 		func(body string) (MetaInfo, error) {
-			empty := Notes{}
-			resource := Notes{}
+			empty := Races{}
+			resource := Races{}
 			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 			if err != nil {
 				return empty, fmt.Errorf("couldn't json decode body: %s", err)

@@ -288,3 +288,37 @@ func (n Notes) PaginationLinks() Links {
 func (n Notes) MetaInfo() Meta {
 	return n.Meta
 }
+
+type Races struct {
+	Data []struct {
+		ID             int           `json:"id"`
+		Name           string        `json:"name"`
+		Entry          interface{}   `json:"entry"`
+		EntryParsed    interface{}   `json:"entry_parsed"`
+		Image          interface{}   `json:"image"`
+		ImageFull      string        `json:"image_full"`
+		ImageThumb     string        `json:"image_thumb"`
+		HasCustomImage bool          `json:"has_custom_image"`
+		IsPrivate      bool          `json:"is_private"`
+		IsTemplate     bool          `json:"is_template"`
+		EntityID       int           `json:"entity_id"`
+		Tags           []interface{} `json:"tags"`
+		CreatedAt      time.Time     `json:"created_at"`
+		CreatedBy      int           `json:"created_by"`
+		UpdatedAt      time.Time     `json:"updated_at"`
+		UpdatedBy      int           `json:"updated_by"`
+		Type           interface{}   `json:"type"`
+		RaceID         interface{}   `json:"race_id"`
+	} `json:"data"`
+	Links `json:"links"`
+	Meta  `json:"meta"`
+	Sync  time.Time `json:"sync"`
+}
+
+func (r Races) PaginationLinks() Links {
+	return r.Links
+}
+
+func (r Races) MetaInfo() Meta {
+	return r.Meta
+}
