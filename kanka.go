@@ -378,3 +378,80 @@ func (q Quests) PaginationLinks() Links {
 func (q Quests) MetaInfo() Meta {
 	return q.Meta
 }
+
+type Journals struct {
+	Data []struct {
+		ID             int           `json:"id"`
+		Name           string        `json:"name"`
+		Entry          string        `json:"entry"`
+		EntryParsed    string        `json:"entry_parsed"`
+		Image          string        `json:"image"`
+		ImageFull      string        `json:"image_full"`
+		ImageThumb     string        `json:"image_thumb"`
+		HasCustomImage bool          `json:"has_custom_image"`
+		IsPrivate      bool          `json:"is_private"`
+		IsTemplate     bool          `json:"is_template"`
+		EntityID       int           `json:"entity_id"`
+		Tags           []interface{} `json:"tags"`
+		CreatedAt      time.Time     `json:"created_at"`
+		CreatedBy      int           `json:"created_by"`
+		UpdatedAt      time.Time     `json:"updated_at"`
+		UpdatedBy      int           `json:"updated_by"`
+		LocationID     interface{}   `json:"location_id"`
+		CharacterID    interface{}   `json:"character_id"`
+		JournalID      interface{}   `json:"journal_id"`
+		Date           string        `json:"date"`
+		Type           string        `json:"type"`
+		CalendarID     interface{}   `json:"calendar_id"`
+		CalendarYear   interface{}   `json:"calendar_year"`
+		CalendarMonth  interface{}   `json:"calendar_month"`
+		CalendarDay    interface{}   `json:"calendar_day"`
+	} `json:"data"`
+	Links `json:"links"`
+	Meta  `json:"meta"`
+	Sync  time.Time `json:"sync"`
+}
+
+func (j Journals) PaginationLinks() Links {
+	return j.Links
+}
+
+func (j Journals) MetaInfo() Meta {
+	return j.Meta
+}
+
+type Tags struct {
+	Data []struct {
+		ID             int           `json:"id"`
+		Name           string        `json:"name"`
+		Entry          interface{}   `json:"entry"`
+		EntryParsed    interface{}   `json:"entry_parsed"`
+		Image          interface{}   `json:"image"`
+		ImageFull      string        `json:"image_full"`
+		ImageThumb     string        `json:"image_thumb"`
+		HasCustomImage bool          `json:"has_custom_image"`
+		IsPrivate      bool          `json:"is_private"`
+		IsTemplate     bool          `json:"is_template"`
+		EntityID       int           `json:"entity_id"`
+		Tags           []interface{} `json:"tags"`
+		CreatedAt      time.Time     `json:"created_at"`
+		CreatedBy      int           `json:"created_by"`
+		UpdatedAt      time.Time     `json:"updated_at"`
+		UpdatedBy      int           `json:"updated_by"`
+		Type           interface{}   `json:"type"`
+		TagID          interface{}   `json:"tag_id"`
+		Colour         interface{}   `json:"colour"`
+		Entities       []int         `json:"entities"`
+	} `json:"data"`
+	Links `json:"links"`
+	Meta  `json:"meta"`
+	Sync  time.Time `json:"sync"`
+}
+
+func (t Tags) PaginationLinks() Links {
+	return t.Links
+}
+
+func (t Tags) MetaInfo() Meta {
+	return t.Meta
+}

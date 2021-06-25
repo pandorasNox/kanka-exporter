@@ -117,11 +117,39 @@ var kResources = []kankaResource{
 	// 	},
 	// },
 
+	// {
+	// 	"races", "/races",
+	// 	func(body string) (MetaInfo, error) {
+	// 		empty := Races{}
+	// 		resource := Races{}
+	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
+	// 		if err != nil {
+	// 			return empty, fmt.Errorf("couldn't json decode body: %s", err)
+	// 		}
+
+	// 		return resource, nil
+	// 	},
+	// },
+
+	// {
+	// 	"quests", "/quests",
+	// 	func(body string) (MetaInfo, error) {
+	// 		empty := Quests{}
+	// 		resource := Quests{}
+	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
+	// 		if err != nil {
+	// 			return empty, fmt.Errorf("couldn't json decode body: %s", err)
+	// 		}
+
+	// 		return resource, nil
+	// 	},
+	// },
+
 	{
-		"races", "/races",
+		"journals", "/journals",
 		func(body string) (MetaInfo, error) {
-			empty := Races{}
-			resource := Races{}
+			empty := Journals{}
+			resource := Journals{}
 			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 			if err != nil {
 				return empty, fmt.Errorf("couldn't json decode body: %s", err)
@@ -132,10 +160,10 @@ var kResources = []kankaResource{
 	},
 
 	{
-		"quests", "/quests",
+		"tags", "/tags",
 		func(body string) (MetaInfo, error) {
-			empty := Quests{}
-			resource := Quests{}
+			empty := Journals{}
+			resource := Journals{}
 			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 			if err != nil {
 				return empty, fmt.Errorf("couldn't json decode body: %s", err)
