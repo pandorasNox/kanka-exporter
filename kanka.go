@@ -9,8 +9,19 @@ type Links struct {
 	Next  string      `json:"next"`
 }
 
-type PaginationLinks interface {
+type Meta struct {
+	CurrentPage int    `json:"current_page"`
+	From        int    `json:"from"`
+	LastPage    int    `json:"last_page"`
+	Path        string `json:"path"`
+	PerPage     int    `json:"per_page"`
+	To          int    `json:"to"`
+	Total       int    `json:"total"`
+}
+
+type MetaInfo interface {
 	PaginationLinks() Links
+	MetaInfo() Meta
 }
 
 type Characters struct {
@@ -44,18 +55,14 @@ type Characters struct {
 		IsPersonalityVisible bool          `json:"is_personality_visible"`
 	} `json:"data"`
 	Links `json:"links"`
-	Meta  struct {
-		CurrentPage int    `json:"current_page"`
-		From        int    `json:"from"`
-		LastPage    int    `json:"last_page"`
-		Path        string `json:"path"`
-		PerPage     int    `json:"per_page"`
-		To          int    `json:"to"`
-		Total       int    `json:"total"`
-	} `json:"meta"`
-	Sync time.Time `json:"sync"`
+	Meta  `json:"meta"`
+	Sync  time.Time `json:"sync"`
 }
 
 func (c Characters) PaginationLinks() Links {
 	return c.Links
+}
+
+func (c Characters) MetaInfo() Meta {
+	return c.Meta
 }
