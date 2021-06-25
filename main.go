@@ -130,6 +130,20 @@ var kResources = []kankaResource{
 			return resource, nil
 		},
 	},
+
+	{
+		"quests", "/quests",
+		func(body string) (MetaInfo, error) {
+			empty := Quests{}
+			resource := Quests{}
+			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
+			if err != nil {
+				return empty, fmt.Errorf("couldn't json decode body: %s", err)
+			}
+
+			return resource, nil
+		},
+	},
 }
 
 func main() {

@@ -322,3 +322,59 @@ func (r Races) PaginationLinks() Links {
 func (r Races) MetaInfo() Meta {
 	return r.Meta
 }
+
+type Quests struct {
+	Data []struct {
+		ID             int         `json:"id"`
+		Name           string      `json:"name"`
+		Entry          interface{} `json:"entry"`
+		EntryParsed    interface{} `json:"entry_parsed"`
+		Image          interface{} `json:"image"`
+		ImageFull      string      `json:"image_full"`
+		ImageThumb     string      `json:"image_thumb"`
+		HasCustomImage bool        `json:"has_custom_image"`
+		IsPrivate      bool        `json:"is_private"`
+		IsTemplate     bool        `json:"is_template"`
+		EntityID       int         `json:"entity_id"`
+		Tags           []int       `json:"tags"`
+		CreatedAt      time.Time   `json:"created_at"`
+		CreatedBy      int         `json:"created_by"`
+		UpdatedAt      time.Time   `json:"updated_at"`
+		UpdatedBy      int         `json:"updated_by"`
+		CharacterID    interface{} `json:"character_id"`
+		Type           string      `json:"type"`
+		Date           string      `json:"date"`
+		IsCompleted    bool        `json:"is_completed"`
+		QuestID        int         `json:"quest_id"`
+		CalendarID     interface{} `json:"calendar_id"`
+		CalendarYear   interface{} `json:"calendar_year"`
+		CalendarMonth  interface{} `json:"calendar_month"`
+		CalendarDay    interface{} `json:"calendar_day"`
+		ElementsCount  int         `json:"elements_count"`
+		Elements       []struct {
+			Colour            string      `json:"colour"`
+			CreatedAt         time.Time   `json:"created_at"`
+			CreatedBy         int         `json:"created_by"`
+			Description       string      `json:"description"`
+			DescriptionParsed string      `json:"description_parsed"`
+			EntityID          int         `json:"entity_id"`
+			ID                int         `json:"id"`
+			IsPrivate         bool        `json:"is_private"`
+			Role              string      `json:"role"`
+			UpdatedAt         time.Time   `json:"updated_at"`
+			UpdatedBy         interface{} `json:"updated_by"`
+			Visibility        string      `json:"visibility"`
+		} `json:"elements"`
+	} `json:"data"`
+	Links `json:"links"`
+	Meta  `json:"meta"`
+	Sync  time.Time `json:"sync"`
+}
+
+func (q Quests) PaginationLinks() Links {
+	return q.Links
+}
+
+func (q Quests) MetaInfo() Meta {
+	return q.Meta
+}
