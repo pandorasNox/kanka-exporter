@@ -253,3 +253,38 @@ func (i Items) PaginationLinks() Links {
 func (i Items) MetaInfo() Meta {
 	return i.Meta
 }
+
+type Notes struct {
+	Data []struct {
+		ID             int         `json:"id"`
+		Name           string      `json:"name"`
+		Entry          string      `json:"entry"`
+		EntryParsed    string      `json:"entry_parsed"`
+		Image          string      `json:"image"`
+		ImageFull      string      `json:"image_full"`
+		ImageThumb     string      `json:"image_thumb"`
+		HasCustomImage bool        `json:"has_custom_image"`
+		IsPrivate      bool        `json:"is_private"`
+		IsTemplate     bool        `json:"is_template"`
+		EntityID       int         `json:"entity_id"`
+		Tags           []int       `json:"tags"`
+		CreatedAt      time.Time   `json:"created_at"`
+		CreatedBy      int         `json:"created_by"`
+		UpdatedAt      time.Time   `json:"updated_at"`
+		UpdatedBy      int         `json:"updated_by"`
+		Type           string      `json:"type"`
+		NoteID         interface{} `json:"note_id"`
+		IsPinned       int         `json:"is_pinned"`
+	} `json:"data"`
+	Links `json:"links"`
+	Meta  `json:"meta"`
+	Sync  time.Time `json:"sync"`
+}
+
+func (n Notes) PaginationLinks() Links {
+	return n.Links
+}
+
+func (n Notes) MetaInfo() Meta {
+	return n.Meta
+}
