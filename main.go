@@ -22,22 +22,24 @@ var kResources = []kankaResource{
 	// {
 	// 	"characters", "/characters",
 	// 	func(body string) (MetaInfo, error) {
-	// 		chars := Characters{}
-	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&chars)
+	// 		empty := Characters{}
+	// 		resource := Characters{}
+	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 	// 		if err != nil {
-	// 			return Characters{}, fmt.Errorf("couldn't json decode body: %s", err)
+	// 			return empty, fmt.Errorf("couldn't json decode body: %s", err)
 	// 		}
 
-	// 		return chars, nil
+	// 		return resource, nil
 	// 	},
 	// },
 	// {
 	// 	"entities", "/entities",
 	// 	func(body string) (MetaInfo, error) {
+	// 		empty := Entities{}
 	// 		resource := Entities{}
 	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 	// 		if err != nil {
-	// 			return Characters{}, fmt.Errorf("couldn't json decode body: %s", err)
+	// 			return empty, fmt.Errorf("couldn't json decode body: %s", err)
 	// 		}
 
 	// 		return resource, nil
@@ -46,10 +48,24 @@ var kResources = []kankaResource{
 	{
 		"locations", "/locations",
 		func(body string) (MetaInfo, error) {
+			empty := Locations{}
 			resource := Locations{}
 			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 			if err != nil {
-				return Characters{}, fmt.Errorf("couldn't json decode body: %s", err)
+				return empty, fmt.Errorf("couldn't json decode body: %s", err)
+			}
+
+			return resource, nil
+		},
+	},
+	{
+		"families", "/families",
+		func(body string) (MetaInfo, error) {
+			empty := Families{}
+			resource := Families{}
+			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
+			if err != nil {
+				return empty, fmt.Errorf("couldn't json decode body: %s", err)
 			}
 
 			return resource, nil
@@ -63,17 +79,19 @@ func main() {
 	kankaApiToken := os.Getenv("KANKA_API_TOKEN")
 	if kankaApiToken == "" {
 		log.Println("no KANKA_API_TOKEN provided, stopping execution.")
+		return
 	}
 
 	kankaCampaignId := os.Getenv("KANKA_CAMPAIGN_ID")
 	if kankaCampaignId == "" {
 		log.Println("no KANKA_CAMPAIGN_ID provided, stopping execution.")
+		return
 	}
 	log.Printf("using campiagn id: %s \n", kankaCampaignId)
 
 	cwd, err := os.Getwd()
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 	fmt.Println(cwd) // for example /home/user
 

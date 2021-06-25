@@ -86,13 +86,8 @@ type Entities struct {
 		UpdatedAt           time.Time     `json:"updated_at"`
 		UpdatedBy           int           `json:"updated_by"`
 	} `json:"data"`
-	Links struct {
-		First string      `json:"first"`
-		Last  string      `json:"last"`
-		Prev  interface{} `json:"prev"`
-		Next  string      `json:"next"`
-	} `json:"links"`
-	Meta struct {
+	Links `json:"links"`
+	Meta  struct {
 		CurrentPage int    `json:"current_page"`
 		From        int    `json:"from"`
 		LastPage    int    `json:"last_page"`
@@ -135,13 +130,8 @@ type Locations struct {
 		IsMapPrivate     int           `json:"is_map_private"`
 		ParentLocationID int           `json:"parent_location_id"`
 	} `json:"data"`
-	Links struct {
-		First string      `json:"first"`
-		Last  string      `json:"last"`
-		Prev  interface{} `json:"prev"`
-		Next  string      `json:"next"`
-	} `json:"links"`
-	Meta struct {
+	Links `json:"links"`
+	Meta  struct {
 		CurrentPage int    `json:"current_page"`
 		From        int    `json:"from"`
 		LastPage    int    `json:"last_page"`
@@ -159,4 +149,48 @@ func (l Locations) PaginationLinks() Links {
 
 func (l Locations) MetaInfo() Meta {
 	return l.Meta
+}
+
+type Families struct {
+	Data []struct {
+		ID             int           `json:"id"`
+		Name           string        `json:"name"`
+		Entry          string        `json:"entry"`
+		EntryParsed    string        `json:"entry_parsed"`
+		Image          interface{}   `json:"image"`
+		ImageFull      string        `json:"image_full"`
+		ImageThumb     string        `json:"image_thumb"`
+		HasCustomImage bool          `json:"has_custom_image"`
+		IsPrivate      bool          `json:"is_private"`
+		IsTemplate     bool          `json:"is_template"`
+		EntityID       int           `json:"entity_id"`
+		Tags           []interface{} `json:"tags"`
+		CreatedAt      time.Time     `json:"created_at"`
+		CreatedBy      int           `json:"created_by"`
+		UpdatedAt      time.Time     `json:"updated_at"`
+		UpdatedBy      int           `json:"updated_by"`
+		LocationID     int           `json:"location_id"`
+		Type           string        `json:"type"`
+		FamilyID       interface{}   `json:"family_id"`
+		Members        []int         `json:"members"`
+	} `json:"data"`
+	Links `json:"links"`
+	Meta  struct {
+		CurrentPage int    `json:"current_page"`
+		From        int    `json:"from"`
+		LastPage    int    `json:"last_page"`
+		Path        string `json:"path"`
+		PerPage     int    `json:"per_page"`
+		To          int    `json:"to"`
+		Total       int    `json:"total"`
+	} `json:"meta"`
+	Sync time.Time `json:"sync"`
+}
+
+func (f Families) PaginationLinks() Links {
+	return f.Links
+}
+
+func (f Families) MetaInfo() Meta {
+	return f.Meta
 }
