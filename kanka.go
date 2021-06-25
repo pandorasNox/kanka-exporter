@@ -66,3 +66,48 @@ func (c Characters) PaginationLinks() Links {
 func (c Characters) MetaInfo() Meta {
 	return c.Meta
 }
+
+type Entities struct {
+	Data []struct {
+		ID                  int           `json:"id"`
+		Name                string        `json:"name"`
+		Type                string        `json:"type"`
+		ChildID             int           `json:"child_id"`
+		Tags                []interface{} `json:"tags"`
+		IsPrivate           bool          `json:"is_private"`
+		IsTemplate          bool          `json:"is_template"`
+		CampaignID          int           `json:"campaign_id"`
+		IsAttributesPrivate bool          `json:"is_attributes_private"`
+		Tooltip             string        `json:"tooltip"`
+		HeaderImage         interface{}   `json:"header_image"`
+		ImageUUID           interface{}   `json:"image_uuid"`
+		CreatedAt           time.Time     `json:"created_at"`
+		CreatedBy           int           `json:"created_by"`
+		UpdatedAt           time.Time     `json:"updated_at"`
+		UpdatedBy           int           `json:"updated_by"`
+	} `json:"data"`
+	Links struct {
+		First string      `json:"first"`
+		Last  string      `json:"last"`
+		Prev  interface{} `json:"prev"`
+		Next  string      `json:"next"`
+	} `json:"links"`
+	Meta struct {
+		CurrentPage int    `json:"current_page"`
+		From        int    `json:"from"`
+		LastPage    int    `json:"last_page"`
+		Path        string `json:"path"`
+		PerPage     int    `json:"per_page"`
+		To          int    `json:"to"`
+		Total       int    `json:"total"`
+	} `json:"meta"`
+	Sync time.Time `json:"sync"`
+}
+
+func (c Entities) PaginationLinks() Links {
+	return c.Links
+}
+
+func (c Entities) MetaInfo() Meta {
+	return c.Meta
+}

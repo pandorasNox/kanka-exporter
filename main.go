@@ -19,16 +19,28 @@ type kankaResource struct {
 }
 
 var kResources = []kankaResource{
+	// {
+	// 	"characters", "/characters",
+	// 	func(body string) (MetaInfo, error) {
+	// 		chars := Characters{}
+	// 		err := json.NewDecoder(strings.NewReader(string(body))).Decode(&chars)
+	// 		if err != nil {
+	// 			return Characters{}, fmt.Errorf("couldn't json decode body: %s", err)
+	// 		}
+
+	// 		return chars, nil
+	// 	},
+	// },
 	{
-		"characters", "/characters",
+		"entities", "/entities",
 		func(body string) (MetaInfo, error) {
-			chars := Characters{}
-			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&chars)
+			resource := Entities{}
+			err := json.NewDecoder(strings.NewReader(string(body))).Decode(&resource)
 			if err != nil {
 				return Characters{}, fmt.Errorf("couldn't json decode body: %s", err)
 			}
 
-			return chars, nil
+			return resource, nil
 		},
 	},
 	// {"character", "/characters/209208"}, // not needed, same infos in characters
